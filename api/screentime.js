@@ -1,7 +1,10 @@
 const data = {};
 
 export default function handler(req, res) {
-  const { app } = req.query;
+  const { app, all } = req.query;
+  
+  if (all) return res.json(data);
+  
   if (!app) return res.status(400).json({ error: 'missing app' });
 
   const now = Date.now();
@@ -15,4 +18,3 @@ export default function handler(req, res) {
 
   res.json({ app, action, time: now, log: data[app] });
 }
-
