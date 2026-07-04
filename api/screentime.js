@@ -1,8 +1,7 @@
 const data = {};
 
-export default function handler(req, res) {
-  const url = new URL(req.url, 'https://example.com');
-  const app = url.searchParams.get('app');
+module.exports = function handler(req, res) {
+  const app = req.query && req.query.app;
   if (!app) return res.status(400).json({ error: 'missing app' });
 
   const now = Date.now();
@@ -16,4 +15,3 @@ export default function handler(req, res) {
 
   res.json({ app, action, time: now, log: data[app] });
 }
-
