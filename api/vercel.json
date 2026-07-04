@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/api/screentime/toggle/:app", "destination": "/api/screentime?app=:app" }
+  ]
+}
