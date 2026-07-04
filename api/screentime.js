@@ -1,11 +1,10 @@
 const data = {};
 
 export default function handler(req, res) {
-  const { app, all } = req.query;
+  const parts = req.url.split('/');
+  const app = parts[parts.length - 1].split('?')[0];
   
-  if (all) return res.json(data);
-  
-  if (!app) return res.status(400).json({ error: 'missing app' });
+  if (!app || app === 'screentime') return res.json(data);
 
   const now = Date.now();
   const cutoff = now - 24 * 60 * 60 * 1000;
